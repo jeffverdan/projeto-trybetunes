@@ -39,7 +39,7 @@ class Login extends React.Component {
         {redirect && <Redirect to="/search" />}
         {loading ? <p>Carregando...</p> : (
           <>
-            <img src={ logoTrybe } alt="trybeTunes" />
+            <img src="" alt="logoTrybe" />
             <form>
               <input
                 type="text"
