@@ -12,6 +12,9 @@ class Login extends React.Component {
       loading: false,
       redirect: false,
     };
+    this.validName = this.validName.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
 
   handleClick = () => {
@@ -22,10 +25,19 @@ class Login extends React.Component {
     });
   }
 
-  handleInput = ({ target: { value } }) => {
+  handleInput = ({ target }) => {
+    const { name } = target;
+    const { value } = target;
+    console.log(value);
+    this.setState({
+      [name]: value,
+    }, () => this.validName());
+  }
+
+  validName() {
     const MIN_LENGTH = 3;
-    const validInput = value.length;
-    if (validInput >= MIN_LENGTH) {
+    const { nameInput } = this.state;
+    if (nameInput.length >= MIN_LENGTH) {
       this.setState({ disabledButton: false });
     } else {
       this.setState({ disabledButton: true });
@@ -43,6 +55,7 @@ class Login extends React.Component {
             <form>
               <input
                 type="text"
+                name="nameInput"
                 data-testid="login-name-input"
                 value={ nameInput }
                 onChange={ this.handleInput }
@@ -50,6 +63,7 @@ class Login extends React.Component {
               <button
                 data-testid="login-submit-button"
                 type="submit"
+                name=""
                 disabled={ disabledButton }
                 onClick={ this.handleClick }
               >
