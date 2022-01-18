@@ -12,6 +12,7 @@ class Search extends React.Component {
       nameSearch: '',
       resultEmpty: false,
       loading: false,
+      name: '',
     };
   }
 
@@ -29,11 +30,12 @@ class Search extends React.Component {
     const { nameSearch } = this.state;
     this.setState({ loading: true }, async () => {
       const albums = await searchAlbumsAPI(nameSearch);
-      console.log(albums.length);
       const length = albums.length > 0
         ? this.setState({ resultEmpty: false })
         : this.setState({ resultEmpty: true });
       this.setState({
+        name: nameSearch,
+        nameSearch: '',
         albums,
         loading: false,
       });
@@ -42,7 +44,7 @@ class Search extends React.Component {
   };
 
   render() {
-    const { disableButton, loading, albums, nameSearch, resultEmpty } = this.state;
+    const { disableButton, name, loading, albums, nameSearch, resultEmpty } = this.state;
     return (
       <div data-testid="page-search">
         <Header />
@@ -51,6 +53,7 @@ class Search extends React.Component {
             type="text"
             data-testid="search-artist-input"
             onChange={ this.valButtton }
+            value={ nameSearch }
           />
           <button
             type="submit"
@@ -61,22 +64,24 @@ class Search extends React.Component {
             Pesquisar
           </button>
         </form>
+        {console.log(name)}
         {loading && <span> Carregando... </span>}
         {albums.length > 0 && (
           <div>
-            <span>
+            <h2>
               Resultado de álbuns de:
-              { nameSearch }
-            </span>
-            {albums.map((result) => (
-              <div key={ result.collectionID }>
+              { ' ' }
+              { name }
+            </h2>
+            {albums.map((album) => (
+              <div key={ album.collectionId }>
                 <Link
-                  to={ `result/${result.collectionID}` }
-                  data-testid={ `link-to-album-${result.collectionName}` }
+                  to={ `album/${album.collectionId}` }
+                  data-testid={ `link-to-album-${album.collectionId}` }
                 >
-                  <img src={ result.artworkUrl100 } alt={ result.collectionName } />
-                  <span>{ result.collectionName }</span>
-                  <span>{ result.artistName }</span>
+                  <img src={ album.artworkUrl100 } alt={ album.collectionName } />
+                  <h5>{ album.collectionName }</h5>
+                  <span>{ album.artistName }</span>
                 </Link>
               </div>
             ))}
