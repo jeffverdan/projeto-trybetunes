@@ -17,13 +17,11 @@ class Search extends React.Component {
 
   valButtton = ({ target: { value } }) => {
     const MINSTRING = 2;
-    console.log(value.length);
-    const valbutton = value.length <= MINSTRING;
+    const valbutton = value.length < MINSTRING;
     this.setState({
       nameSearch: value,
       disableButton: valbutton,
     });
-    return value;
   }
 
   searchButton = (event) => {
