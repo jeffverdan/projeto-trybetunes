@@ -64,7 +64,6 @@ class Search extends React.Component {
             Pesquisar
           </button>
         </form>
-        {console.log(name)}
         {loading && <span> Carregando... </span>}
         {albums.length > 0 && (
           <div>
