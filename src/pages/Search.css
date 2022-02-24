@@ -1,0 +1,80 @@
+.page-search {  
+  color: white;
+  font-size: calc(10px + 2vmin);  
+  display: flex;
+  flex-direction: row;    
+}
+
+a {
+  text-decoration: none;
+  color: white;  
+}
+
+a:hover {
+  text-decoration: none;
+  color: rgb(49, 209, 121);
+}
+
+.header {  
+  margin:15px 15px; 
+  display: flex;
+  flex-direction: column;    
+}
+
+.form-control {
+  margin:15px 15px;  
+  padding: 5px;
+  height: 5vh;
+  width: calc(85px + 20vmin);
+  font-size: 18px;
+  color: #2f6900;
+}
+
+.card {
+  margin:15px 15px;  
+  padding: 5px;
+  height: 350px;
+  width: calc(85px + 20vmin);   
+}
+.card-title {
+  font-size: calc(2px + 2vmin);
+}
+
+.card a {
+  color: black;
+  font-size: 2vh;
+}
+
+.btn-success {		
+	cursor:pointer;	
+	font-size:18px;	
+  margin: 0px 15px;  
+  padding: 5px;
+  width: calc(85px + 20vmin);
+}
+.btn-success:hover {
+	background:linear-gradient(to bottom, #5cb811 5%, #77ff00 100%);
+	background-color:#5cb811;
+}
+
+.conteinerMenu{
+  background-color: rgb(0, 0, 0);
+  width: calc(120px + 20vmin);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+}
+
+.resultsSongs {
+  margin-left: calc(140px + 20vmin);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;  
+}
+
+.conteinerSons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;  
+}

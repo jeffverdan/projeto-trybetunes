@@ -1,6 +1,7 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
+import './Login.css';
 
 class Login extends React.Component {
   constructor() {
@@ -28,7 +29,6 @@ class Login extends React.Component {
   handleInput = ({ target }) => {
     const { name } = target;
     const { value } = target;
-    console.log(value);
     this.setState({
       [name]: value,
     }, () => this.validName());
@@ -46,24 +46,29 @@ class Login extends React.Component {
 
   render() {
     const { nameInput, disabledButton, loading, redirect } = this.state;
+    const { history } = this.props;
     return (
-      <div data-testid="page-login">
-        {redirect && <Redirect to="/search" />}
+      <div className="page-login">
+        {redirect && history.push('search') }
         {loading ? <p>Carregando...</p> : (
           <>
-            <img src="" alt="logoTrybe" />
-            <form>
+            <img id="logoTrybe" src="https://media2.giphy.com/media/e6w3i2arfjIoI8hWy0/giphy.gif?cid=790b7611e40800e87440296d5aac144447e43c1e0c48e6eb&rid=giphy.gif&ct=g" alt="logoTrybe" />
+            <h3>TrybeTunes</h3>
+            <form className="fromLogin">
               <input
                 type="text"
                 name="nameInput"
+                className="nameInput"
                 data-testid="login-name-input"
+                placeholder="Digite seu login aqui"
                 value={ nameInput }
                 onChange={ this.handleInput }
+                required
               />
               <button
                 data-testid="login-submit-button"
                 type="submit"
-                name=""
+                className="loginButton"
                 disabled={ disabledButton }
                 onClick={ this.handleClick }
               >
@@ -76,5 +81,9 @@ class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.object,
+}.isRequired;
 
 export default Login;
