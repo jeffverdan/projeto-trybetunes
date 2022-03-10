@@ -28,8 +28,8 @@ class Header extends React.Component {
       <header className="header">
         {loading ? <span> Carregando... </span>
           : <span className="display-4">{dataUser.name}</span>}
+        <Link to="/profile" data-testid="link-to-profile"> Perfil </Link>
         <Link to="/favorites" data-testid="link-to-favorites">Favoritas</Link>
-        <Link to="/profile" data-testid="link-to-profile">Perfil</Link>
         <Link to="/search" data-testid="link-to-search">Pesquisar</Link>
       </header>
     );

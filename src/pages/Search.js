@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+// import Pagination from '../components/Pagination';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import './Search.css';
 
@@ -48,6 +49,16 @@ class Search extends React.Component {
     });
   };
 
+  // onPageChanged = data => {
+  //   const { allCountries } = this.state;
+  //   const { currentPage, totalPages, pageLimit } = data;
+
+  //   const offset = (currentPage - 1) * pageLimit;
+  //   const currentCountries = albums.slice(offset, offset + pageLimit);
+
+  //   this.setState({ currentPage:, currentCountries, totalPages });
+  // };
+
   render() {
     const { disableButton, name, loading, albums, nameSearch, resultEmpty } = this.state;
     return (
@@ -74,6 +85,14 @@ class Search extends React.Component {
             </button>
           </form>
         </div>
+        {/* <div>
+          <Pagination
+            totalRecords={ albums.length }
+            pageLimit={ 18 }
+            pageNeighbours={ 1 }
+            onPageChanged={ this.onPageChanged }
+          />
+        </div> */}
         {loading && <span> Carregando... </span>}
         {albums.length > 0 && (
           <div className="resultsSongs">

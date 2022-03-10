@@ -5,6 +5,10 @@
   flex-direction: row;    
 }
 
+.display-4 {
+  margin-bottom: 15px;
+}
+
 a {
   text-decoration: none;
   color: white;  
@@ -34,15 +38,27 @@ a:hover {
   margin:15px 15px;  
   padding: 5px;
   height: 350px;
-  width: calc(85px + 20vmin);   
+  background-color: rgb(39, 40, 43);
+  width: calc(90px + 20vmin);   
+}
+.card:hover {  
+  background-color: rgb(54, 55, 59);  
+}
+.card-img {
+  width: calc(55px + 20vmin);
+  box-shadow: 10px 5px 30px  rgba(0, 0, 0, 0.75);
+  margin: 5px;
 }
 .card-title {
+  margin: 10px;
   font-size: calc(2px + 2vmin);
 }
-
 .card a {
-  color: black;
+  margin: 5px;  
   font-size: 2vh;
+}
+.card-text {
+  margin: 10px;
 }
 
 .btn-success {		
