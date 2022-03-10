@@ -94,3 +94,8 @@ a:hover {
   flex-direction: row;
   justify-content: space-evenly;  
 }
+
+.pagesBtn {  
+  width: calc(60px + 20vmin);
+}
+

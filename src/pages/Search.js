@@ -15,6 +15,8 @@ class Search extends React.Component {
       resultEmpty: false,
       loading: false,
       name: '',
+      limitPage: 5,
+      pages: [],
     };
   }
 
@@ -33,9 +35,14 @@ class Search extends React.Component {
 
   searchButton = (event) => {
     event.preventDefault();
-    const { nameSearch } = this.state;
+    const { nameSearch, limitPage } = this.state;
     this.setState({ loading: true }, async () => {
       const albums = await searchAlbumsAPI(nameSearch);
+      const totalPages = Math.ceil(albums.length / limitPage);
+      const arrayPages = [];
+      for (let i = 1; i <= totalPages; i += 1) {
+        arrayPages.push(i);
+      }
       const length = albums.length > 0
         ? this.setState({ resultEmpty: false })
         : this.setState({ resultEmpty: true });
@@ -44,23 +51,17 @@ class Search extends React.Component {
         nameSearch: '',
         albums,
         loading: false,
+        pages: arrayPages,
       });
       return length;
     });
   };
 
-  // onPageChanged = data => {
-  //   const { allCountries } = this.state;
-  //   const { currentPage, totalPages, pageLimit } = data;
-
-  //   const offset = (currentPage - 1) * pageLimit;
-  //   const currentCountries = albums.slice(offset, offset + pageLimit);
-
-  //   this.setState({ currentPage:, currentCountries, totalPages });
-  // };
-
   render() {
-    const { disableButton, name, loading, albums, nameSearch, resultEmpty } = this.state;
+    const {
+      disableButton, name, loading, albums, nameSearch, resultEmpty, pages,
+    } = this.state;
+    console.log(pages);
     return (
       <div className="page-search">
         <div className="conteinerMenu">
@@ -84,15 +85,24 @@ class Search extends React.Component {
               Pesquisar
             </button>
           </form>
+          {albums.length > 0 && (
+            <div className="header">
+              <span>
+                Albuns Encontrados:
+                {albums.length}
+              </span>
+              {/* {pages.map((page) => (
+                <button
+                  className="pagesBtn"
+                  type="button"
+                  key={ page }
+                >
+                  { page }
+                </button>
+              ))} */}
+            </div>
+          )}
         </div>
-        {/* <div>
-          <Pagination
-            totalRecords={ albums.length }
-            pageLimit={ 18 }
-            pageNeighbours={ 1 }
-            onPageChanged={ this.onPageChanged }
-          />
-        </div> */}
         {loading && <span> Carregando... </span>}
         {albums.length > 0 && (
           <div className="resultsSongs">
