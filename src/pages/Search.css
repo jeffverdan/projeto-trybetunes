@@ -37,7 +37,7 @@ a:hover {
 .card {
   margin:15px 15px;  
   padding: 5px;
-  height: 350px;
+  height: calc(100px + 40vmin);
   background-color: rgb(39, 40, 43);
   width: calc(90px + 20vmin);   
 }
@@ -45,7 +45,7 @@ a:hover {
   background-color: rgb(54, 55, 59);  
 }
 .card-img {
-  width: calc(55px + 20vmin);
+  max-width: calc(55px + 20vmin);
   box-shadow: 10px 5px 30px  rgba(0, 0, 0, 0.75);
   margin: 5px;
 }
