@@ -1,0 +1,34 @@
+/* .pageAlbum {
+  display: flex;
+  
+} */
+
+.menu {
+  background-color:  rgb(33, 37, 41) ;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  position: fixed;  
+  height: 100vh;
+  width: calc(60px + 30vmin);
+}
+.menu img {
+  width: calc(60px + 20vmin);
+  margin: 10px 10px;
+}
+.menu h4 {
+  margin: 10px 10px;
+}
+.artistName {
+  margin-left: 10px;
+}
+.results {
+  margin-left: 300px;
+  color: green;
+}
+
+@media only screen and (max-width: 719px) {  
+  div .container {
+    width: calc(80px + 30vmin);
+  }
+}

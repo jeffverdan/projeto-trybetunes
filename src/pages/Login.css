@@ -1,20 +1,18 @@
 .page-login {
-  align-items: center;  
   color: white;
-  display: flex;
-  flex-direction: column;
   font-size: calc(30px + 5vmin);
-  justify-content: center;
   min-height: 100vh;  
 }
 
 h3 {  
   margin: 30px;
+  text-align: center;
+  color: white;
 }
 
 #logoTrybe {
   width: calc(100px + 5vmin);
-  border-radius: 100px;    
+  border-radius: 100px;
 }
 
 .fromLogin {

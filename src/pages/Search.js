@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 import Header from '../components/Header';
 // import Pagination from '../components/Pagination';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import './Search.css';
 
+const WINDOW_SIZE = 700;
 class Search extends React.Component {
   constructor() {
     super();
@@ -15,14 +17,18 @@ class Search extends React.Component {
       resultEmpty: false,
       loading: false,
       name: '',
-      limitPage: 5,
-      pages: [],
+      windowDesktop: false,
     };
   }
 
-  // componentDidMount() {
-  //   $('.owl-carousel').owlCarousel();
-  // }
+  componentDidMount() {
+    this.onMount();
+  }
+
+  onMount() {
+    if ($(window).width() > WINDOW_SIZE) this.setState({ windowDesktop: true });
+    console.log($(window));
+  }
 
   valButtton = ({ target: { value } }) => {
     const MINSTRING = 2;
@@ -35,14 +41,9 @@ class Search extends React.Component {
 
   searchButton = (event) => {
     event.preventDefault();
-    const { nameSearch, limitPage } = this.state;
+    const { nameSearch } = this.state;
     this.setState({ loading: true }, async () => {
       const albums = await searchAlbumsAPI(nameSearch);
-      const totalPages = Math.ceil(albums.length / limitPage);
-      const arrayPages = [];
-      for (let i = 1; i <= totalPages; i += 1) {
-        arrayPages.push(i);
-      }
       const length = albums.length > 0
         ? this.setState({ resultEmpty: false })
         : this.setState({ resultEmpty: true });
@@ -51,7 +52,6 @@ class Search extends React.Component {
         nameSearch: '',
         albums,
         loading: false,
-        pages: arrayPages,
       });
       return length;
     });
@@ -59,54 +59,53 @@ class Search extends React.Component {
 
   render() {
     const {
-      disableButton, name, loading, albums, nameSearch, resultEmpty, pages,
+      disableButton, name, loading, albums, nameSearch, resultEmpty, windowDesktop,
     } = this.state;
-    console.log(pages);
     return (
-      <div className="page-search">
-        <div className="conteinerMenu">
-          <Header />
-          <form className="formSearch">
-            <input
-              className="form-control"
-              type="text"
-              data-testid="search-artist-input"
-              onChange={ this.valButtton }
-              value={ nameSearch }
-              placeholder="Digite aqui sua busca"
-            />
-            <button
-              className="btn btn-success"
-              type="submit"
-              data-testid="search-artist-button"
-              onClick={ this.searchButton }
-              disabled={ disableButton }
-            >
-              Pesquisar
-            </button>
-          </form>
-          {albums.length > 0 && (
-            <div className="header">
-              <span>
-                Albuns Encontrados:
-                {albums.length}
-              </span>
-              {/* {pages.map((page) => (
-                <button
-                  className="pagesBtn"
-                  type="button"
-                  key={ page }
-                >
-                  { page }
-                </button>
-              ))} */}
-            </div>
-          )}
-        </div>
+      <div className="page">
+        <Navbar bg="dark" expand={ windowDesktop } variant="dark">
+          <Container>
+            <Navbar.Brand>Bem vindo!</Navbar.Brand>
+            <Navbar.Toggle aria-controls="navbarScroll" />
+            <Navbar.Collapse id="navbarScroll">
+              <Nav
+                className="me-auto fixed"
+                navbarScroll
+              >
+                <Header />
+                <form className="formSearch">
+                  <input
+                    className="form-control inputSearch"
+                    type="text"
+                    onChange={ this.valButtton }
+                    value={ nameSearch }
+                    placeholder="Digite aqui sua busca"
+                  />
+                  <button
+                    className="btn btn-success"
+                    type="submit"
+                    onClick={ this.searchButton }
+                    disabled={ disableButton }
+                  >
+                    Pesquisar
+                  </button>
+                </form>
+                {albums.length > 0 && (
+                  <div className="header">
+                    <span className="fs-6">
+                      Albuns Encontrados:&nbsp;
+                      {albums.length}
+                    </span>
+                  </div>
+                )}
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
         {loading && <span> Carregando... </span>}
         {albums.length > 0 && (
-          <div className="resultsSongs">
-            <h2 className="display-5">
+          <div className="results">
+            <h2 className="display-6">
               {`Resultado da pesquisa para: " ${name} "`}
             </h2>
             <div className="">
