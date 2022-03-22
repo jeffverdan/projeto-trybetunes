@@ -10,3 +10,11 @@
 .btnProfile {
   margin: 0px !important;
 }
+
+.conteinerMenu {
+  background-color: rgb(33, 37, 41) ;
+  height: 100vh;
+}
+.resultsProfile {
+  margin: 15px 15px;
+}

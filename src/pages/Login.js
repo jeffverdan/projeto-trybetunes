@@ -48,11 +48,11 @@ class Login extends React.Component {
     const { nameInput, disabledButton, loading, redirect } = this.state;
     const { history } = this.props;
     return (
-      <div className="page-login">
+      <div className="position-absolute top-50 start-50 translate-middle">
         {redirect && history.push('search') }
         {loading ? <p>Carregando...</p> : (
           <>
-            <img id="logoTrybe" src="https://media2.giphy.com/media/e6w3i2arfjIoI8hWy0/giphy.gif?cid=790b7611e40800e87440296d5aac144447e43c1e0c48e6eb&rid=giphy.gif&ct=g" alt="logoTrybe" />
+            <img className="mx-auto d-block" id="logoTrybe" src="https://media2.giphy.com/media/e6w3i2arfjIoI8hWy0/giphy.gif?cid=790b7611e40800e87440296d5aac144447e43c1e0c48e6eb&rid=giphy.gif&ct=g" alt="logoTrybe" />
             <h3>TrybeTunes</h3>
             <form className="fromLogin">
               <input

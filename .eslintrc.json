@@ -5,6 +5,9 @@
     },
     "extends": "trybe-frontend",
     "parser": "babel-eslint",
+    "rules": {
+      "react/jsx-max-depth" : 0
+    },
     "parserOptions": {
       "ecmaFeatures": {
         "jsx": true

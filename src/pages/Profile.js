@@ -55,7 +55,7 @@ class Profile extends React.Component {
         <div className="conteinerMenu">
           <Header />
         </div>
-        <div className="results">
+        <div className="resultsProfile">
           <h2 className="fs-6"> Profile Info </h2>
           {(!loading)
             ? (

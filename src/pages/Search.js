@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 import Header from '../components/Header';
 // import Pagination from '../components/Pagination';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import './Search.css';
 
+const WINDOW_SIZE = 700;
 class Search extends React.Component {
   constructor() {
     super();
@@ -15,12 +17,18 @@ class Search extends React.Component {
       resultEmpty: false,
       loading: false,
       name: '',
+      windowDesktop: false,
     };
   }
 
-  // componentDidMount() {
-  //   $('.owl-carousel').owlCarousel();
-  // }
+  componentDidMount() {
+    this.onMount();
+  }
+
+  onMount() {
+    if ($(window).width() > WINDOW_SIZE) this.setState({ windowDesktop: true });
+    console.log($(window));
+  }
 
   valButtton = ({ target: { value } }) => {
     const MINSTRING = 2;
@@ -51,49 +59,49 @@ class Search extends React.Component {
 
   render() {
     const {
-      disableButton, name, loading, albums, nameSearch, resultEmpty,
+      disableButton, name, loading, albums, nameSearch, resultEmpty, windowDesktop,
     } = this.state;
     return (
       <div className="page">
-        <div className="conteinerMenu">
-          <Header />
-          <form className="formSearch">
-            <input
-              className="form-control inputSearch"
-              type="text"
-              data-testid="search-artist-input"
-              onChange={ this.valButtton }
-              value={ nameSearch }
-              placeholder="Digite aqui sua busca"
-            />
-            <button
-              className="btn btn-success"
-              type="submit"
-              data-testid="search-artist-button"
-              onClick={ this.searchButton }
-              disabled={ disableButton }
-            >
-              Pesquisar
-            </button>
-          </form>
-          {albums.length > 0 && (
-            <div className="header">
-              <span className="fs-6">
-                Albuns Encontrados:&nbsp;
-                {albums.length}
-              </span>
-              {/* {pages.map((page) => (
-                <button
-                  className="pagesBtn"
-                  type="button"
-                  key={ page }
-                >
-                  { page }
-                </button>
-              ))} */}
-            </div>
-          )}
-        </div>
+        <Navbar bg="dark" expand={ windowDesktop } variant="dark">
+          <Container>
+            <Navbar.Brand>Bem vindo!</Navbar.Brand>
+            <Navbar.Toggle aria-controls="navbarScroll" />
+            <Navbar.Collapse id="navbarScroll">
+              <Nav
+                className="me-auto fixed"
+                navbarScroll
+              >
+                <Header />
+                <form className="formSearch">
+                  <input
+                    className="form-control inputSearch"
+                    type="text"
+                    onChange={ this.valButtton }
+                    value={ nameSearch }
+                    placeholder="Digite aqui sua busca"
+                  />
+                  <button
+                    className="btn btn-success"
+                    type="submit"
+                    onClick={ this.searchButton }
+                    disabled={ disableButton }
+                  >
+                    Pesquisar
+                  </button>
+                </form>
+                {albums.length > 0 && (
+                  <div className="header">
+                    <span className="fs-6">
+                      Albuns Encontrados:&nbsp;
+                      {albums.length}
+                    </span>
+                  </div>
+                )}
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
         {loading && <span> Carregando... </span>}
         {albums.length > 0 && (
           <div className="results">
