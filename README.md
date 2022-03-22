@@ -31,10 +31,12 @@ O projeto TrybeTunes, é uma aplicação capaz de reproduzir músicas das mais v
   - Ver o perfil da pessoa logada;
   - Editar o perfil da pessoa logada;
 
-### Protótipo do projeto
-Você pode acessar um protótipo no link abaixo:
+### Prints do projeto
+Tela de Login:<br>
+<img src="https://github.com/jeffverdan/projeto-trybetunes/blob/main/public/images/Tela%20de%20Login.png" width="600"/>
 
-https://www.figma.com/file/BDQgAJvOe4KNUjmrYh5t68/TrybeTunes-Figma
+Tela de Pesquisa:<br>
+<img src="https://github.com/jeffverdan/projeto-trybetunes/blob/main/public/images/Tela%20de%20Search.png" width="600"/>
 
 ## Instruções para executar o projeto
 
