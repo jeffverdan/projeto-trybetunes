@@ -15,8 +15,6 @@ class Search extends React.Component {
       resultEmpty: false,
       loading: false,
       name: '',
-      limitPage: 5,
-      pages: [],
     };
   }
 
@@ -35,14 +33,9 @@ class Search extends React.Component {
 
   searchButton = (event) => {
     event.preventDefault();
-    const { nameSearch, limitPage } = this.state;
+    const { nameSearch } = this.state;
     this.setState({ loading: true }, async () => {
       const albums = await searchAlbumsAPI(nameSearch);
-      const totalPages = Math.ceil(albums.length / limitPage);
-      const arrayPages = [];
-      for (let i = 1; i <= totalPages; i += 1) {
-        arrayPages.push(i);
-      }
       const length = albums.length > 0
         ? this.setState({ resultEmpty: false })
         : this.setState({ resultEmpty: true });
@@ -51,7 +44,6 @@ class Search extends React.Component {
         nameSearch: '',
         albums,
         loading: false,
-        pages: arrayPages,
       });
       return length;
     });
@@ -59,16 +51,15 @@ class Search extends React.Component {
 
   render() {
     const {
-      disableButton, name, loading, albums, nameSearch, resultEmpty, pages,
+      disableButton, name, loading, albums, nameSearch, resultEmpty,
     } = this.state;
-    console.log(pages);
     return (
-      <div className="page-search">
+      <div className="page">
         <div className="conteinerMenu">
           <Header />
           <form className="formSearch">
             <input
-              className="form-control"
+              className="form-control inputSearch"
               type="text"
               data-testid="search-artist-input"
               onChange={ this.valButtton }
@@ -87,8 +78,8 @@ class Search extends React.Component {
           </form>
           {albums.length > 0 && (
             <div className="header">
-              <span>
-                Albuns Encontrados:
+              <span className="fs-6">
+                Albuns Encontrados:&nbsp;
                 {albums.length}
               </span>
               {/* {pages.map((page) => (
@@ -105,8 +96,8 @@ class Search extends React.Component {
         </div>
         {loading && <span> Carregando... </span>}
         {albums.length > 0 && (
-          <div className="resultsSongs">
-            <h2 className="display-5">
+          <div className="results">
+            <h2 className="display-6">
               {`Resultado da pesquisa para: " ${name} "`}
             </h2>
             <div className="">

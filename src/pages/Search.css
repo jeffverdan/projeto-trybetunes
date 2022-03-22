@@ -1,11 +1,12 @@
-.page-search {  
+.page {  
   color: white;
   font-size: calc(10px + 2vmin);  
   display: flex;
   flex-direction: row;    
 }
 
-.display-4 {
+.display-5 {
+  color: white;
   margin-bottom: 15px;
 }
 
@@ -25,7 +26,7 @@ a:hover {
   flex-direction: column;    
 }
 
-.form-control {
+.inputSearch {
   margin:15px 15px;  
   padding: 5px;
   height: 5vh;
@@ -68,10 +69,6 @@ a:hover {
   padding: 5px;
   width: calc(85px + 20vmin);
 }
-.btn-success:hover {
-	background:linear-gradient(to bottom, #5cb811 5%, #77ff00 100%);
-	background-color:#5cb811;
-}
 
 .conteinerMenu{
   background-color: rgb(0, 0, 0);
@@ -82,11 +79,15 @@ a:hover {
   position: fixed;
 }
 
-.resultsSongs {
+.results {
   margin-left: calc(140px + 20vmin);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;  
+}
+
+.results h2 {
+  margin-top: 20px;
 }
 
 .conteinerSons {
